@@ -1,0 +1,723 @@
+"mdl"
+7
+"PktPiano","appl","John",1061,505,0
+"Global notes(300) as Integer
+Global currentNoteIndex as Integer
+
+Sub Project_Startup()
+
+End Sub"
+1061
+1061
+"PktPiano"
+"1.0"
+""
+"bmpfile"
+1
+"logo"
+1061
+"..\logobw.bmp"
+"mnu"
+2,"main"
+1056
+1
+"menu"
+1
+"PktPiano","",1057
+2
+"menu"
+1
+"About","","",1058
+"Sub Menu1058_click()
+	MsgBox ~PktPiano for Palm~ + chr(10) + ~Created with <3 by John Spahr~ + chr(10) + chr(10) + ~johnspahr.org~ + chr(10) + ~github.com/johnspahr~
+End Sub"
+"menu"
+1
+"Exit","","",1059
+"Sub Menu1059_click()
+	Stop
+End Sub"
+"vew"
+4,1003,#FALSE#,#TRUE#,#TRUE#,0,0,0,160,160,0,#TRUE#,#TRUE#
+"PktPiano"
+"mainForm"
+"Sub mainForm_before()
+
+End Sub"
+0
+"Sub Form1003_After()
+	'set default slider positions when launched
+	durationSlider.Value = 25
+	volumeSlider.Value = 32
+End Sub"
+"Sub Form1003_Event()
+	Dim eventType as Integer
+	Dim key as String
+	eventType = GetEventType()
+	
+	If eventType = nsbKeyOrButton Then
+		key = GetKey()
+		If asc(key) = 5 Then 
+			MenuDraw ~main~
+		End If
+	End If
+End Sub"
+0,0,0,0
+"sli"
+1
+#FALSE#,#FALSE#,#FALSE#,#FALSE#,1,64,10,0,0,0
+"obj"
+3
+"sli","volumeSlider",1006,92,28,12,64,#TRUE#,0,"Slider",0,0,0
+""
+"lbl"
+1
+"obj"
+3
+"lbl","durLbl",1007,4,16,11,38,#TRUE#,0,"Duration:",0,0,0
+""
+"lbl"
+1
+"obj"
+3
+"lbl","volLbl",1008,92,16,11,15,#TRUE#,0,"Vol:",0,0,0
+""
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","playBtn",1010,136,0,12,24,#TRUE#,0,"Play",0,0,0
+"Sub object1010()
+	recordBtn.Status = 0
+	If currentNoteIndex > 0 Then
+		Dim i as Integer
+		Dim dlay as Integer
+		Dim base as Integer
+		
+		For i = 0 To (currentNoteIndex - 1)
+			base = (i * 3) + 1
+			
+			Sound notes(base), notes(base + 1), notes(base + 2)
+			For dlay = 1 To 1000
+			Next
+		Next
+	End If
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","c4Btn",1034,0,48,28,32,#TRUE#,0,"C4",0,0,0
+"Sub object1034()
+	'c4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 261
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 261, durationSlider.Value * 50, volumeSlider.Value
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","c4SBtn",1035,32,48,28,32,#TRUE#,0,"C#4",0,0,0
+"Sub object1035()
+	'c#4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 277
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 277, durationSlider.Value * 50, volumeSlider.Value
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","d4Btn",1036,64,48,28,32,#TRUE#,0,"D4",0,0,0
+"Sub object1036()
+	'd4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 294
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 294, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","d4SBtn",1037,96,48,28,32,#TRUE#,0,"D#4",0,0,0
+"Sub object1037()
+	'd#4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 311
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 311, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","e4Btn",1038,128,48,28,32,#TRUE#,0,"E4",0,0,0
+"Sub object1038()
+	'e4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 330
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 330, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","f4Btn",1039,0,76,28,32,#TRUE#,0,"F4",0,0,0
+"Sub object1039()
+	'f4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 349
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 349, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","f4SBtn",1040,32,76,28,32,#TRUE#,0,"F#4",0,0,0
+"Sub object1040()
+	'f#4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 370
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 370, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","g4Btn",1041,64,76,28,32,#TRUE#,0,"G4",0,0,0
+"Sub object1041()
+	'g4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 392
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 392, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","g4SBtn",1042,96,76,28,32,#TRUE#,0,"G#4",0,0,0
+"Sub object1042()
+	'g#4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 415
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 415, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","a4Btn",1043,128,76,28,32,#TRUE#,0,"A4",0,0,0
+"Sub object1043()
+	'audi a4
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 440
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 440, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","f5SBtn",1044,0,104,28,32,#TRUE#,0,"F#5",0,0,0
+"Sub object1044()
+	'f#5
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 740
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 740, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","g5Btn",1045,32,104,28,32,#TRUE#,0,"G5",0,0,0
+"Sub object1045()
+	'g5
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 784
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 784, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","g5SBtn",1046,64,104,28,32,#TRUE#,0,"G#5",0,0,0
+"Sub object1046()
+	'g#5
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 831
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 831, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","a5Btn",1047,96,104,28,32,#TRUE#,0,"A5",0,0,0
+"Sub object1047()
+	'a5
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 880
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 880, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","a5SBtn",1048,128,104,28,32,#TRUE#,0,"A#5",0,0,0
+"Sub object1048()
+	'a#5
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 932
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 932, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","b5Btn",1049,0,132,28,32,#TRUE#,0,"B5",0,0,0
+"Sub object1049()
+	'b5
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 988
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 988, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","c6Btn",1050,32,132,28,32,#TRUE#,0,"C6",0,0,0
+"Sub object1050()
+	'c6
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 1047
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 1047, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","c6SBtn",1051,64,132,28,32,#TRUE#,0,"C#6",0,0,0
+"Sub object1051()
+	'c#6
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 1109
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 1109, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","d6Btn",1052,96,132,28,32,#TRUE#,0,"D6",0,0,0
+"Sub object1052()
+	'd6
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 1175
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 1175, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"but"
+1
+#TRUE#,#TRUE#,#TRUE#
+"obj"
+3
+"but","d6SBtn",1053,128,132,28,32,#TRUE#,0,"D#6",0,0,0
+"Sub object1053()
+	'f#5
+	If recordBtn.Status = 1 Then
+		If currentNoteIndex < 100 Then
+			'if recording and less than 100 notes have been recorded
+			Dim baseIndex as Integer
+			baseIndex = (currentNoteIndex * 3) + 1
+			
+			'assign next 3 values (frequency, duration, and volume) to next 3 slots in recording array
+			notes(baseIndex) = 1245
+			notes(baseIndex + 1) = durationSlider.Value * 50
+			notes(baseIndex + 2) = volumeSlider.Value
+			currentNoteIndex = currentNoteIndex + 1
+		Else
+			'more than 100 notes sin a recording
+			MsgBox ~Recording limit reached. Ended recording.~
+			recordBtn.Status = 0
+		End If
+	End If
+	
+	'play sound (freq, dur, amp)
+	Sound 1245, durationSlider.Value * 50, volumeSlider.Value
+
+End Sub"
+"cho"
+1
+#FALSE#,0,#TRUE#
+"obj"
+3
+"cho","recordBtn",1054,112,0,12,20,#TRUE#,0,"Rec",0,0,0
+"Sub object1054()
+	If recordBtn.Status = 1 Then
+		currentNoteIndex = 0
+	End If
+End Sub"
+"sli"
+1
+#FALSE#,#FALSE#,#FALSE#,#FALSE#,1,50,10,0,0,0
+"obj"
+3
+"sli","durationSlider",1055,4,28,12,80,#TRUE#,0,"Slider",0,0,0
+""
+"end"
