@@ -1,6 +1,6 @@
 "mdl"
 7
-"PktPiano","appl","John",1061,505,0
+"PktPiano","appl","John",1078,505,0
 "Global notes(300) as Integer
 Global currentNoteIndex as Integer
 
@@ -8,19 +8,24 @@ Sub Project_Startup()
 
 End Sub"
 1061
-1061
+1078
 "PktPiano"
-"1.0"
+"1.1"
 ""
 "bmpfile"
 1
 "logo"
 1061
 "..\logobw.bmp"
+"bmpfile"
+1
+"logosm"
+1078
+"..\smol.BMP"
 "mnu"
 2,"main"
 1056
-1
+3
 "menu"
 1
 "PktPiano","",1057
@@ -29,7 +34,7 @@ End Sub"
 1
 "About","","",1058
 "Sub Menu1058_click()
-	MsgBox ~PktPiano for Palm~ + chr(10) + ~Created with <3 by John Spahr~ + chr(10) + chr(10) + ~johnspahr.org~ + chr(10) + ~github.com/johnspahr~
+	MsgBox ~PktPiano v1.1~ + chr(10) + ~Created with <3 by John Spahr~ + chr(10) + chr(10) + ~johnspahr.org~ + chr(10) + ~github.com/johnspahr~
 End Sub"
 "menu"
 1
@@ -37,17 +42,487 @@ End Sub"
 "Sub Menu1059_click()
 	Stop
 End Sub"
+"menu"
+1
+"Load","",1062
+6
+"menu"
+1
+"SLOT 1","","",1064
+"Sub Menu1064_click()
+	'slot 1
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	dbName = ~PnoSlot1~
+	
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		MsgBox ~Slot 1 is empty!~
+	Else
+		res = dbPosition(db, 1, 0)
+		
+		'read note count header
+		res = dbGet(db, currentNoteIndex)
+		
+		'load array vals
+		maxIndex = currentNoteIndex * 3
+		
+		For i = 1 To maxIndex
+			res = dbGet(db, notes(i))
+		Next
+		
+		res = dbClose(db)
+		MsgBox ~Slot 1 loaded.~
+		
+	End If
+
+End Sub"
+"menu"
+1
+"SLOT 2","","",1065
+"Sub Menu1065_click()
+	'slot 2
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	dbName = ~PnoSlot2~
+	
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		MsgBox ~Slot 2 is empty!~
+	Else
+		res = dbPosition(db, 1, 0)
+		
+		'read note count header
+		res = dbGet(db, currentNoteIndex)
+		
+		'load array vals
+		maxIndex = currentNoteIndex * 3
+		
+		For i = 1 To maxIndex
+			res = dbGet(db, notes(i))
+		Next
+		
+		res = dbClose(db)
+		MsgBox ~Slot 2 loaded.~
+		
+	End If
+End Sub"
+"menu"
+1
+"SLOT 3","","",1066
+"Sub Menu1066_click()
+	'slot 3
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot3~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		MsgBox ~Slot 3 is empty!~
+	Else
+		res = dbPosition(db, 1, 0)
+		
+		'read note count header
+		res = dbGet(db, currentNoteIndex)
+		
+		'load array vals
+		maxIndex = currentNoteIndex * 3
+		
+		For i = 1 To maxIndex
+			res = dbGet(db, notes(i))
+		Next
+		
+		res = dbClose(db)
+		MsgBox ~Slot 3 loaded.~
+		
+	End If
+
+End Sub"
+"menu"
+1
+"SLOT 4","","",1067
+"Sub Menu1067_click()
+	'slot 4
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot4~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		MsgBox ~Slot 4 is empty!~
+	Else
+		res = dbPosition(db, 1, 0)
+		
+		'read note count header
+		res = dbGet(db, currentNoteIndex)
+		
+		'load array vals
+		maxIndex = currentNoteIndex * 3
+		
+		For i = 1 To maxIndex
+			res = dbGet(db, notes(i))
+		Next
+		
+		res = dbClose(db)
+		MsgBox ~Slot 4 loaded.~
+		
+	End If
+End Sub"
+"menu"
+1
+"SLOT 5","","",1074
+"Sub Menu1074_click()
+	'slot 5
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot5~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		MsgBox ~Slot 5 is empty!~
+	Else
+		res = dbPosition(db, 1, 0)
+		
+		'read note count header
+		res = dbGet(db, currentNoteIndex)
+		
+		'load array vals
+		maxIndex = currentNoteIndex * 3
+		
+		For i = 1 To maxIndex
+			res = dbGet(db, notes(i))
+		Next
+		
+		res = dbClose(db)
+		MsgBox ~Slot 5 loaded.~
+		
+	End If
+End Sub"
+"menu"
+1
+"SLOT 6","","",1075
+"Sub Menu1075_click()
+'slot 4
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot6~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		MsgBox ~Slot 6 is empty!~
+	Else
+		res = dbPosition(db, 1, 0)
+		
+		'read note count header
+		res = dbGet(db, currentNoteIndex)
+		
+		'load array vals
+		maxIndex = currentNoteIndex * 3
+		
+		For i = 1 To maxIndex
+			res = dbGet(db, notes(i))
+		Next
+		
+		res = dbClose(db)
+		MsgBox ~Slot 6 loaded.~
+		
+	End If
+End Sub"
+"menu"
+1
+"Save","",1063
+6
+"menu"
+1
+"SLOT 1","","",1068
+"Sub Menu1068_click()
+	'slot 1
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot1~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	'attempt to open existing database
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		'create database if nonexistent
+		res = dbCreate(db, dbName, 0, ~John~)
+		res = dbOpen(db, dbName, 0)
+	End If
+		
+	res = dbPosition(db, 1, 0)
+	
+	res = dbPut(db, currentNoteIndex)
+	
+	'save only active notes
+	maxIndex = currentNoteIndex * 3
+	For i = 1 To maxIndex
+		res = dbPut(db, notes(i))
+	Next
+	
+	res = dbClose(db)
+	MsgBox ~Saved to Slot 1.~
+		
+End Sub"
+"menu"
+1
+"SLOT 2","","",1069
+"Sub Menu1069_click()
+	'slot 2
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot2~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	'attempt to open existing database
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		'create database if nonexistent
+		res = dbCreate(db, dbName, 0, ~John~)
+		res = dbOpen(db, dbName, 0)
+	End If
+		
+	res = dbPosition(db, 1, 0)
+	
+	res = dbPut(db, currentNoteIndex)
+	
+	'save only active notes
+	maxIndex = currentNoteIndex * 3
+	For i = 1 To maxIndex
+		res = dbPut(db, notes(i))
+	Next
+	
+	res = dbClose(db)
+	MsgBox ~Saved to Slot 2.~
+
+End Sub"
+"menu"
+1
+"SLOT 3","","",1071
+"Sub Menu1071_click()
+	'slot 3
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot3~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	'attempt to open existing database
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		'create database if nonexistent
+		res = dbCreate(db, dbName, 0, ~John~)
+		res = dbOpen(db, dbName, 0)
+	End If
+		
+	res = dbPosition(db, 1, 0)
+	
+	res = dbPut(db, currentNoteIndex)
+	
+	'save only active notes
+	maxIndex = currentNoteIndex * 3
+	For i = 1 To maxIndex
+		res = dbPut(db, notes(i))
+	Next
+	
+	res = dbClose(db)
+	MsgBox ~Saved to Slot 3.~
+
+End Sub"
+"menu"
+1
+"SLOT 4","","",1072
+"Sub Menu1072_click()
+	'slot 4
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot4~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	'attempt to open existing database
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		'create database if nonexistent
+		res = dbCreate(db, dbName, 0, ~John~)
+		res = dbOpen(db, dbName, 0)
+	End If
+		
+	res = dbPosition(db, 1, 0)
+	
+	res = dbPut(db, currentNoteIndex)
+	
+	'save only active notes
+	maxIndex = currentNoteIndex * 3
+	For i = 1 To maxIndex
+		res = dbPut(db, notes(i))
+	Next
+	
+	res = dbClose(db)
+	MsgBox ~Saved to Slot 4.~
+
+End Sub"
+"menu"
+1
+"SLOT 5","","",1076
+"Sub Menu1076_click()
+	'slot 5
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot5~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	'attempt to open existing database
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		'create database if nonexistent
+		res = dbCreate(db, dbName, 0, ~John~)
+		res = dbOpen(db, dbName, 0)
+	End If
+		
+	res = dbPosition(db, 1, 0)
+	
+	res = dbPut(db, currentNoteIndex)
+	
+	'save only active notes
+	maxIndex = currentNoteIndex * 3
+	For i = 1 To maxIndex
+		res = dbPut(db, notes(i))
+	Next
+	
+	res = dbClose(db)
+	MsgBox ~Saved to Slot 5.~
+End Sub"
+"menu"
+1
+"SLOT 6","","",1077
+"Sub Menu1077_click()
+	'slot 6
+	Dim db as Database
+	Dim dbName as String
+	Dim res as Integer
+	Dim maxIndex as Integer
+	Dim i as Integer
+	
+	dbName = ~PnoSlot6~
+	
+	'turn off recording
+	recordBtn.Status = 0
+	
+	'attempt to open existing database
+	res = dbOpen(db, dbName, 0)
+	
+	If res <> 0 Then
+		'create database if nonexistent
+		res = dbCreate(db, dbName, 0, ~John~)
+		res = dbOpen(db, dbName, 0)
+	End If
+		
+	res = dbPosition(db, 1, 0)
+	
+	res = dbPut(db, currentNoteIndex)
+	
+	'save only active notes
+	maxIndex = currentNoteIndex * 3
+	For i = 1 To maxIndex
+		res = dbPut(db, notes(i))
+	Next
+	
+	res = dbClose(db)
+	MsgBox ~Saved to Slot 6.~
+End Sub"
 "vew"
 4,1003,#FALSE#,#TRUE#,#TRUE#,0,0,0,160,160,0,#TRUE#,#TRUE#
 "PktPiano"
 "mainForm"
-"Sub mainForm_before()
+"Sub mainmainmainForm_before()
 
 End Sub"
 0
 "Sub Form1003_After()
 	'set default slider positions when launched
-	durationSlider.Value = 25
+	durationSlider.Value = 4
 	volumeSlider.Value = 32
 End Sub"
 "Sub Form1003_Event()
