@@ -1,7 +1,7 @@
 # PktPiano
 Turn your Palm PDA into a lil musical instrument! Record loops and make the song of the summer :)
 
-<img src="screenshot.bmp alt="screenshot"/>
+<img src="screenshot.bmp" alt="screenshot"/>
 
 Should work with just about any Palm PDA.
 
