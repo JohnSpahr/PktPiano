@@ -1,5 +1,5 @@
 # PktPiano
-Turn your Palm PDA into a lil musical instrument! Record loops and make the song of the summer :)
+Turn your Palm PDA into a lil musical instrument! Record, save, and load loops. Go make the song of the summer :)
 
 <img src="screenshot.bmp" alt="screenshot"/>
 
